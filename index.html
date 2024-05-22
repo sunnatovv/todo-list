@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body class="bg-gray-300">
+    <div class="bg-white p-5 my-10 mx-auto max-w-md">
+      <div class="flex items-center gap-5">
+        <input
+          id="todo-input"
+          class="w-full border py-2 px-3 rounded focus:outline-none"
+          type="text"
+        />
+        <button
+          onclick="todoList()"
+          class="py-2 px-5 rounded bg-green-500 text-white"
+        >
+          Add
+        </button>
+      </div>
+
+      <ul id="list-container" class="my-10"></ul>
+    </div>
+
+    <!-- <script>
+
+
+
+      document
+        .getElementById("todo-input")
+        .addEventListener("keydown", function (event) {
+          if (event.key === "Enter") {
+            addTodo();
+          }
+        });
+
+      const input = document.getElementById("todo-input");
+      const list = document.getElementById("list");
+      function addTodo() {
+        if (input.value.trim() === "") {
+          return;
+        }
+        const todoItem = document.createElement("div");
+        todoItem.className = "flex items-center justify-between mt-2";
+        todoItem.innerHTML = `
+        <p>${input.value}</p>
+        <button class="bg-red-500/20 border-none rounded text-red-500 px-3 py-1 hover:text-red-200 hover:bg-red-500" onclick="deleteTodoItem(this)">delete</button>
+      `;
+
+        list.appendChild(todoItem);
+
+        input.value = "";
+      }
+
+      function deleteTodoItem(button) {
+        const todoItem = button.parentElement;
+        todoItem.remove();
+      }
+    </script> -->
+
+    <script>
+      const todoInput = document.getElementById("todo-input");
+      const listContainer = document.getElementById("list-container");
+
+      function todoList() {
+        if (todoInput.value.trim() === "") {
+          return;
+        }
+        const li = document.createElement("li");
+        li.innerHTML = todoInput.value;
+        listContainer.appendChild(li);
+        let span = document.createElement("span");
+        span.innerHTML = "\u00d7";
+        li.appendChild(span);
+
+        todoInput.value = "";
+
+        listContainer.addEventListener(
+          "click",
+          function (e) {
+            if (e.target.tagName === "LI") {
+              e.target.classList.toggle("checked");
+            } else if (e.target.tagName === "SPAN") {
+              e.target.parentElement.remove();
+            }
+          },
+          false
+        );
+      }
+    </script>
+  </body>
+</html>

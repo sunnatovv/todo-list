@@ -1,0 +1,40 @@
+ul li {
+    list-style: none;
+    padding: 12px 8px 12px 40px;
+    user-select: none;
+    cursor: pointer;
+    position: relative;;
+}
+
+ul li::before{
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #555;
+    border-radius: 50%;
+    background-image: url("./img/ci--radio-unchecked.png");
+    left: 10px;
+    top: 15px;
+}
+
+ul li.checked {
+    color: #555;
+    text-decoration: line-through;
+}
+
+ul li.checked::before {
+    background-color: green;
+}
+
+ul li span {
+    position: absolute;
+    right: 0;
+    top: 5px;
+    width: 30px;
+    height: 30px;
+    font-size: 24px;
+    line-height: 25px;
+    text-align: center;
+}
+
